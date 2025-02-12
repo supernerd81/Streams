@@ -1,17 +1,34 @@
 package de.supernerd;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
-
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        List<Integer> list = new ArrayList<>();
+        for(int i = 1; i<100; i++) {
+            list.add(i);
         }
+
+        list.add(102);
+        list.add(152);
+        list.add(150);
+        list.add(130);
+        list.add(114);
+
+        List<Integer> newList = list.stream().filter(n -> n % 2 == 0).collect(Collectors.toList());
+        System.out.println(newList);
+        List<Integer> newList2 = list.stream().filter(n -> n % 2 == 0).map(n -> n * 2).collect(Collectors.toList());
+        System.out.println(newList2);
+        List<Integer> newList3 = list.stream().filter(n -> n % 2 == 0).map(n -> n * 2).sorted().collect(Collectors.toList());
+        System.out.println(newList3);
+        int newList4 = list.stream().filter(n -> n % 2 == 0).map(n -> n * 2).sorted().reduce(1, (a, b) -> a + b);
+        System.out.println(newList4);
+
+        list.stream().filter(n -> n % 2 == 0).map(n -> n * 2).sorted().forEach(n -> System.out.println(n));
+
+       List<Integer> collect = list.stream().filter(n -> n % 2 == 0).map(n -> n * 2).sorted().collect(Collectors.toList());
+        System.out.println(collect);
     }
 }
